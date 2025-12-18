@@ -4,9 +4,10 @@ public class Course {
     private String instructor;
     private Student[] students;
 
+    // Constructo
     public Course(String courseName, String instructor, int size) {
         this.courseName = courseName;
-        this.instructor = instructor;
+        this. instructor = instructor;
         students = new Student[size];
     }
 
@@ -16,10 +17,12 @@ public class Course {
         }
     }
 
+    // Calculate avg GPA
     public double courseAverageGPA() {
         double sum = 0;
         int count = 0;
 
+        // Loop
         for (Student s : students) {
             if (s != null) {
                 sum += s.getGpa();
@@ -27,7 +30,9 @@ public class Course {
             }
         }
 
+        // Avoid division by zero
         if (count == 0) return 0;
+
         return sum / count;
     }
 
