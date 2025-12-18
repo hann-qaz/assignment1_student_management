@@ -2,11 +2,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Student s1 = new Student("Alice Brown", "S001", "Computer Science");
-        Student s2 = new Student("Bob Smith", "S002", "IT");
-        Student s3 = new Student("Charlie Green", "S003", "Math");
-        Student s4 = new Student("Diana White", "S004", "Physics");
-        Student s5 = new Student("Evan Black", "S005", "Engineering");
+        Student s1 = new Student("Assel Sadvakassova", "25001", "Computer Science");
+        Student s2 = new Student("Raim Artur", "25002", "Cybersecurity");
+        Student s3 = new Student("Zheka Fatbelly", "25003", "Big data");
+        Student s4 = new Student("Genadiy Golovkin", "25004", "Smart Things");
+        Student s5 = new Student("Cristiano Ronaldo", "25007", "Software Engineering");
 
         s1.updateGPA(3.8);
         s1.addCredits(40);
