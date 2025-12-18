@@ -1,131 +1,96 @@
-# Assignment 1
+# Assignment 1 – Student Management System
 
-## Project
-This is my first assignment for OOP course. I created a Java program that manages student information using classes and objects.  It was hard but I have learned a lot!
+## About
+This is my first OOP assignment.  I made a Java program that manages student information using classes and objects. It was challenging but I learned a lot!
 
-## What programm Do?
-The program stores information about students (name, ID, major, GPA, credits) and courses.  You can: Add students to courses, calculate average GPA for a course, find the student with most credits , check which students have GPA >= 3.5
+## What It Does
+The program can:
+- Store student info (name, ID, major, GPA, credits)
+- Add students to a course
+- Calculate average GPA
+- Find student with most credits
+- Check who has honors (GPA >= 3.5)
 
 ## Classes
 
-### Student
-This is  class that stores student data.  It has:
-- **Fields:** name, id, major, gpa, credits
-- **Methods:**
-    - `updateGPA()` - update the student's GPA
-    - `addCredits()` - add credits to total
-    - `isHonors()` - return true if GPA is 3.5 or higher
-    - `toString()` - print all student info
+### Student Class
+Stores one student's information. 
+- Fields: name, id, major, gpa, credits
+- Methods:  updateGPA(), addCredits(), isHonors(), toString()
 
-**What I learned:** I had to make all fields private (encapsulation
+### Course Class
+Represents a course with multiple students.
+- Fields: courseName, instructor, students[]
+- Methods: addStudent(), courseAverageGPA(), highestCreditStudent()
 
-### Course
-Class presents a course with multiple students.
-- **Fields:** courseName, instructor, students array
-- **Methods:**
-    - `addStudent()` - add a student at specific index
-    - `courseAverageGPA()` - calculate avg GPA of all students
-    - `highestCreditStudent()` - find student with most credits
-
-**What I learned:** How to use composition (one class contains objects of another class).
-
-### Main
-This has the main() methods:
-- `getTopStudent()` - find student with highest GPA
-- `countHonors()` - count students who have honors
-- `totalCredits()` - sum all credits from all students
+### Main Class
+Has the main method and helper methods: 
+- getTopStudent() - finds highest GPA
+- countHonors() - counts honors students
+- totalCredits() - sums all credits
 
 ## How to Run
-1. Cope this code
-2. Open it in IntelliJ IDEA
-3. Click "Run" button
-4. Check output
+1. Open project in IntelliJ IDEA
+2. Run Main. java
+3. Check console output
 
-## Program Output
-The program prints:
-1. List of all students with their info
-2. Average GPA of the course
-3. Student with highest credits
-4. Number of honors students
-5. Total credits of all students
+## Output
+Program shows:
+- All students with their info
+- Course average GPA
+- Student with most credits
+- Number of honors students
+- Total credits
 
-## Problems
+## Problems I Had
 
-### Bug #1: NullPointerException in courseAverageGPA()
-**Problem:** My program crashed when I tried to calculate average GPA.
+### Bug 1: NullPointerException
+**Problem:** Program crashed when calculating average GPA. 
 
-**Error message:**
-```
-Exception in thread "main" java.lang.NullPointerException
-    at Course.courseAverageGPA(Course.java:23)
-```
+**Why:** I forgot arrays start with null values. When I called `s.getGpa()` on null, it crashed.
 
-I forgot that arrays in Java are initialized with null values.  When I tried to call `s.getGpa()` on a null object, it crashed.
-
-How I fixed: Added a null check:
-
-/*
-java
-for (Student s : students) {
-    if (s != null) {  // THIS WAS THE FIX!
-        sum += s.getGpa();
-        count++;
-    }
+**Fix:** Added null check before using the object. 
+```java
+if (s != null) {
+    sum += s.getGpa();
 }
-*/
-
-### Bug #2: Wrong honors calculation
-**Problem:** Student with GPA of exactly 3.5 was not counted as honors student.
-
-I wrote `if (gpa > 3.5)` instead of `if (gpa >= 3.5)`. 
-
-How I fixed: Change `>` to `>=` .
-
-### Bug #3: Division by zero possibility
-**Problem:** If all students in array are null, the courseAverageGPA() would divide by zero.
-
-How I fixed: Added check:
-/*
-java
-if (count == 0) return 0;
-return sum / count;
-*/
-
-### Bug #4: Array index out of bounds
-**Problem:** I tried to add 6 students to array of size 5 and got:
 ```
-ArrayIndexOutOfBoundsException:  Index 5 out of bounds for length 5
-```
-Arrays start at index 0!  So array of size 5 has indices 0,1,2,3,4 (not 1,2,3,4,5).
 
-How I fixed: Made sure to create array with correct size and only add 5 students.
+### Bug 2: Wrong honors check
+**Problem:** Students with exactly 3.5 GPA weren't counted as honors.
 
-### Concepts that I learn
-- **Encapsulation:**
-- **Composition:** 
-- **Arrays of Objects:**
-- **null values:**
+**Why:** I wrote `gpa > 3.5` instead of `gpa >= 3.5`
 
-### Challenges
-1. **Understanding null:** This was the hardest part. I kept forgetting that array elements start as null.
-2. **Debugging:** Learning to read error messages and find the line number where error happened.
-3. **Thinking in objects:** It was weird at first to think about "objects" instead of just variables.
-4. **Method parameters:** Understanding when to pass objects vs primitive types.
+**Fix:** Changed to `>=`
+
+### Bug 3: Array index error
+**Problem:** Tried to add 6 students to array of size 5.
+
+**Why:** Forgot arrays start at index 0! 
+
+**Fix:** Made array with correct size. 
+
+## What I Learned
+- **Encapsulation** - using private fields with getters/setters
+- **Composition** - one class contains objects of another class
+- **Null checks** - always check if object is null before using it
+- **Arrays** - they start at index 0, not 1
+
+## Challenges
+The hardest part was the NullPointerException bug. I spent about an hour debugging it. I learned to use IntelliJ debugger and read error messages better.
+
+Also understanding why we need objects instead of just variables was confusing at first.
 
 ## Time Spent
-- **Planning & understanding assignment:** ~20 minutes
-- **Writing Student class:** ~40 minutes
-- **Writing Course class:** ~1 hour (spent time debugging the null error)
-- **Writing Main class:** ~45 hour
-- **Testing & fixing bugs:**  ~1 hours
-- **Writing README:** ~30 minutes
+- Writing code: ~3 hours
+- Debugging: ~1.5 hours
+- README:  ~30 minutes
 
-**Total:  About 5 hours with procrastination**
+**Total: about 5 hours**
 
 ## Reflection
-This assignment was not easy but helped me understand OOP. I didn't understand why we need classes. But now I understand that objects make the code more organized and reusable.
+This assignment helped me understand OOP better. At first I didn't get why we need classes, but now I see they make code more organized. 
 
-The hard part is debugging the NullPointerException.  I spent almost an hour trying to figure out why my program crashed and adding details.  I learned to use the debugger in IntelliJ and chatGPT.
+Debugging was hard but I learned a lot from fixing my mistakes. Next time I will test each method right after writing it instead of writing everything first.
 
-
-Amirkhan  OOP master
+Amirkhan  OOP  master
